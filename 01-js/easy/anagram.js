@@ -8,7 +8,33 @@
 */
 
 function isAnagram(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false
+  }
 
+  //create a character map
+  let map = {}
+
+  for (let i = 0; i < str1.length; i++) {
+    if (map[str1[i]]) {
+      map[str1[i]]++;
+    } else {
+      map[str1[i]] = 1;
+    }
+  }
+
+  //search in the map
+  for (let i = 0; i < str2.length; i++) {
+    if (map[str2[i]] && map[str2[i]] > 0) {
+      map[str2[i]]--;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
 }
+
+// console.log(isAnagram("rat", "car"));
 
 module.exports = isAnagram;
