@@ -17,6 +17,50 @@
   - `npm run test-calculator`
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add(a) {
+    this.result += a;
+  }
+
+  subtract(a) {
+    this.result -= a;
+  }
+
+  multiply(a) {
+    this.result *= a;
+  }
+
+  divide(a) {
+    if (a === 0) throw new Error('Zero division')
+    this.result /= a;
+  }
+
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  calculate(exp) {
+    // see if alphabets are there
+    const invalid = exp.replace(/[^a-zA-Z]/gi, '').length;
+    if (invalid > 0) throw new Error('invalid expression');
+
+    // get rid of the spaces
+    const refined = exp.replace(/[^0-9().+\-*/]/gi, '')
+    let ans = Number(eval(refined));
+
+    if (ans === Infinity)
+      throw new Error('Division by zero')
+
+    this.result = ans;
+  }
+}
 
 module.exports = Calculator;
