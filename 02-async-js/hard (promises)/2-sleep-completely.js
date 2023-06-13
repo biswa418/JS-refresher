@@ -3,6 +3,18 @@
  * During this time the thread should not be able to do anything else.
  */
 
-function sleep (seconds) {
+function sleep(seconds) {
+    let start = new Date();
 
+    while (new Date() - start < (seconds * 1000)) {
+        //block
+    }
+}
+
+
+sleep(5);
+
+// check the later code
+for (let i = 0; i < 5; i++) {
+    console.log(i)
 }
